@@ -9,12 +9,28 @@
         <h1>All Curriculum</h1>
         <v-btn>Create New</v-btn>
       </div>
-      <div class="home-card-div">
-        <v-card>
-          <v-card-title> Curriculum 1 </v-card-title>
-          <v-card-text> This is the curriculum content</v-card-text>
+      <div class="home-card-div" v-for="curriculum in projectData" :key="curriculum.id" >
+        <v-card v-if="curriculum.id !== null" >
+          <v-card-title > <router-link :to="`/curriculum/${curriculum.id}`">{{ curriculum.name }} </router-link></v-card-title>
+          <v-card-text > {{ curriculum.description }}</v-card-text>
         </v-card>
       </div>
     </v-col>
   </v-row>
 </template>
+
+<script>
+
+import { mapState } from 'vuex'
+
+export default {
+  data () {
+    return { }
+  },
+  computed: {
+    ...mapState([
+      'projectData'
+    ])
+  }
+}
+</script>

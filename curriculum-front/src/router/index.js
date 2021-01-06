@@ -18,7 +18,7 @@ const routes = [
     component: UpsertCurriculum
   },
   {
-    path: '/curriculum',
+    path: '/curriculum/:id',
     name: 'DisplayCurriculum',
     component: DisplayCurriculum
   }

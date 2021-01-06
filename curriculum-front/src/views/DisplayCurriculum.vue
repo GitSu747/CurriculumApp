@@ -6,17 +6,17 @@
              md="6"
              offset-md="3">
         <div class="row-header-div">
-          <h1>Curriculum Name</h1>
-          <v-text>
-            This is just some description for the curriculum
-          </v-text>
+          <h1> {{ curriculum.name }}</h1>
+          <p>
+            {{curriculum.description}}
+          </p>
         </div>
         <v-row>
           <v-col>
-            <v-expansion-panels>
+            <v-expansion-panels v-for="(project,index) in curriculum.section" :key="index">
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  Section 1
+                  {{project.project}}
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <v-list subheader
@@ -128,3 +128,25 @@
       </v-col>
     </v-row>
 </template>
+
+<script>
+import { mapState } from 'vuex'
+
+export default {
+  data () {
+    /// return { curriculum: this.projectData.filter((obj) => { return obj.id === this.$route.params.id }) }
+    return {
+      curriculum: {}
+    }
+  },
+  computed: {
+    ...mapState([
+      'projectData'
+    ])
+  },
+  mounted () {
+    this.curriculum = this.projectData.filter((obj) => { return obj.id === this.$route.params.id }).pop()
+  }
+}
+
+</script>
